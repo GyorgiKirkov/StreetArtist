@@ -1,0 +1,160 @@
+@use "../abstracts/" as *;
+#artists\/items {
+  min-height: 100vh;
+  background-color: #a16a5e;
+  .add-new-item {
+    height: 120px;
+    background-color: #fcebd5;
+    display: flex;
+    align-items: center;
+    margin: 26px 0;
+    padding: 11px 0;
+    text-decoration: none;
+
+    .add-NI-border {
+      width: 100%;
+      height: 100%;
+      margin: 0 18px;
+      border: 2.5px dashed #a16a5e;
+      display: flex;
+      align-items: center;
+
+      p {
+        margin: 0 auto;
+        color: #a16a5e;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 21px;
+      }
+    }
+  }
+  .cards-wrapper {
+    @include min-S-laptop {
+      padding: 0 8%;
+    }
+    .card {
+      margin-bottom: 20px;
+      .datum {
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 11px;
+        color: #a16a5e;
+      }
+      .item-title {
+        margin-top: 5px;
+        margin-bottom: 1.1px;
+      }
+      .desc {
+        margin-top: 12px;
+      }
+      .card-btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #a16a5e;
+        height: 48px;
+        .send-to-auc {
+          background-color: #1b59ac;
+          color: #fcebd5;
+        }
+
+        .unpublish {
+          background-color: #1bac6f;
+          color: #fcebd5;
+        }
+        .publish {
+          background-color: #e5e5e5;
+          color: #5a5a5a;
+        }
+        .remove {
+          background-color: #d44c2e;
+          color: #fcebd5;
+        }
+        .edit {
+          background-color: #fcebd5;
+          color: #a16a5e;
+        }
+        button:not(:last-child) {
+          margin-right: 11px;
+        }
+        button:disabled {
+          cursor: auto;
+        }
+        @include custom-max-400 {
+          button {
+            padding: 5px 15px;
+          }
+        }
+        @include max-M-phone {
+          button {
+            padding: 4px 9px;
+          }
+        }
+        @include custom-min-768-max-930 {
+          button {
+            padding: 5px 9px;
+          }
+          button:not(:last-child) {
+            margin-right: 7px;
+          }
+        }
+      }
+    }
+  }
+  .confirm-screen-overlay {
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #a16a5e;
+    opacity: 0;
+    z-index: 11;
+  }
+  .confirm-screen-overlay.active {
+    height: 100%;
+    opacity: 0.8;
+  }
+  .confirm-popup {
+    opacity: 0;
+    transition: opacity 20ms ease-in;
+    pointer-events: none;
+    z-index: 12;
+    background-color: #a16a5e;
+    width: fit-content;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    border-radius: 5px;
+    p {
+      color: #fcebd5;
+      margin-bottom: 14px;
+    }
+    .confirm {
+      background-color: #d44c2e;
+      color: #fcebd5;
+      margin-left: 7px;
+      transition: all 150ms ease-in-out;
+      &:hover {
+        background-color: #d44c2e;
+        transform: scale(1.1);
+      }
+    }
+    .cancel {
+      background-color: #fcebd5;
+      color: #a16a5e;
+      transition: all 100ms ease-in-out;
+      &:hover {
+        background-color: #e5e5e5;
+        transform: scale(1.1);
+      }
+    }
+  }
+  .confirm-popup.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

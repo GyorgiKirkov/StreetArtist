@@ -1,0 +1,89 @@
+#auctionPage {
+  background: radial-gradient(circle, #0077ea, #1f4f96, #1b2949, #000);
+  color: white;
+  min-height: 110vh;
+  text-align: center;
+}
+.auctionH2 {
+  margin: 10px;
+}
+
+input {
+  width: 100px;
+  margin: 5px;
+}
+.auction-card-img {
+  display: inline-block;
+  margin: 10px;
+}
+
+.card-header {
+  padding: 10px;
+}
+
+.pricebox {
+  display: inline-block;
+}
+
+.auction-action {
+  margin-bottom: 170px;
+  text-align: center;
+}
+.timer {
+  font-size: larger;
+}
+
+.stage {
+  margin-bottom: -10px;
+}
+
+.rgbBox {
+  background: #020024;
+  background: linear-gradient(
+    155deg,
+    #020024 0%,
+    red 0%,
+    #ffab00 12%,
+    #e0ff08 36%,
+    #00e4ff 48%,
+    #0005ff 60%,
+    #fe00e7 72%,
+    red 84%,
+    #ffa200 96%
+  );
+  width: 125px;
+  height: 55px;
+  margin: 16px;
+  position: relative;
+  animation: gradient 55s linear infinite;
+}
+
+.rgbBox::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  position: absolute;
+  filter: blur(4px);
+}
+
+.rgbBox .priceBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #1f1f1f 74%);
+  width: 120px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  padding: 11px;
+  color: #fff;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}

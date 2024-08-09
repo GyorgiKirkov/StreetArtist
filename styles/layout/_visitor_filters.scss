@@ -1,0 +1,113 @@
+// #Filter Styles
+// ************
+@use "../abstracts/" as *;
+.filters {
+  position: fixed;
+  top: 69px; //navigation height
+  height: calc(100vh - 69px);
+  width: 100%;
+  background-color: #a16a5e;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  transform: translateX(100%);
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .filters-inner {
+    position: relative;
+    margin: 0 17px;
+    h1 {
+      margin: 22px 0;
+      color: #fcebd5;
+    }
+    .close-btn {
+      position: absolute;
+      top: 17px;
+      right: 0;
+      cursor: pointer;
+      background: none;
+    }
+
+    input,
+    select {
+      height: 27px;
+      width: 97px;
+    }
+    input,
+    select {
+      background-color: transparent;
+      outline: none;
+      border: 1px solid#EDD5BB;
+      border-radius: 2px;
+    }
+    input:focus,
+    select:focus {
+      outline: 1px solid #fcebd5;
+    }
+    label,
+    p {
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 21px;
+    }
+
+    input,
+    select,
+    label,
+    p,
+    ::placeholder {
+      color: #edd5bb;
+    }
+
+    .filter-title,
+    .filter-artist,
+    .filter-price,
+    .filter-type {
+      display: flex;
+      flex-direction: column;
+    }
+    .prices {
+      display: flex;
+      justify-content: space-between;
+      @include min-tablet {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+    }
+    .border {
+      border-top: 2px solid #fcebd5;
+      border-radius: 2px;
+    }
+    label,
+    p {
+      margin-bottom: 19px;
+    }
+    input,
+    select {
+      margin-bottom: 32px;
+    }
+    .border {
+      margin-bottom: 40px;
+    }
+    select,
+    ::placeholder {
+      font-size: 13px;
+      line-height: 15px;
+      font-weight: 300;
+      padding-left: 8px;
+    }
+    input[type="number"],
+    input[type="number"] {
+      appearance: none;
+    }
+  }
+  .apply-btn {
+    align-self: flex-end;
+    margin-right: 17px;
+    margin-bottom: 13px;
+    padding: 0;
+    background: none;
+  }
+}

@@ -1,0 +1,110 @@
+// CAROUSEL
+@use "../abstracts/" as *;
+.carousel{
+    position: relative;
+    height: 257px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    .carousel_button{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        z-index: 10;
+        padding: 0;
+        svg path{
+            transition: stroke 0.3s ease;
+        }
+        svg:hover{
+        path{
+            stroke: $background-dark;
+           }
+       }
+    }
+    .carousel_button--left{
+        left: 19px;
+    }
+    .carousel_button--right{
+        right: 19px;
+    }
+    .carousel_slides-wrapper{
+        position: relative;
+        height:  100%;
+        padding: 0;
+        margin: 0;
+        transition: transform 0.25s ease;
+        .carousel_slide{
+            width: 100%;
+            padding: 0 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            transition: opacity 0.5s ease-in;
+            display: flex;
+            .slide_left-part,.slide_right-part{
+                width: 50%;
+                padding: 2.5rem 2rem;
+                @include max-M-phone{
+                    padding: 3rem 1.5rem;
+                }
+                .slide_content{
+                    p{
+                        font-family: Roboto;
+                        font-size: 9px;
+                        font-weight: 400;
+                        line-height: 12px;
+                        text-align: center;
+                        @include min-tablet{
+                            font-size: 12px;
+                            line-height:16px;
+                        }
+
+                    }
+                }
+            }
+            .slide_left-part{
+                .slide_content{
+                    background-color: $background-dark;
+                    padding: 0.5rem;
+                    position: relative;
+                    img{
+                        height: 46px;
+                        width: 46px;
+                        object-fit: cover;
+                        border: 2px solid $primary-default;
+                        border-radius: 50%;
+                        position: absolute;
+                        top:-23px;
+                        left:50%;
+                        transform: translateX(-50%);
+                        @include min-tablet{
+                            top: -30px;
+                            height: 60px;
+                            width: 60px;
+                        }
+                    }
+                    p{
+                        padding-top: 25px;
+                        color: $text-white;
+                    }
+                }
+            }
+            .slide_right-part{
+                .slide_content{
+                    p{
+                        color: $primary-default;
+                    }
+                }
+            }
+            .border{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 100%;
+                border-right: 2px solid $primary-default;
+            }
+        }
+    }
+}

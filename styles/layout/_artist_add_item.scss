@@ -1,0 +1,510 @@
+@use "../abstracts/" as *;
+
+#artists\/add-new-item {
+  .new-item-wrapper {
+    background-color: #a16a5e;
+
+    min-height: 100vh;
+    position: relative;
+    .new-item-inner {
+      display: flex;
+      flex-direction: column;
+      padding: 26px 18px;
+
+      .title-checkbox,
+      .new-item_title,
+      .new-item_desc,
+      .new-item_type-price,
+      .new-item_img-url,
+      .new-item_type,
+      .new-item_price {
+        display: flex;
+      }
+      .new-item_title,
+      .new-item_desc,
+      .new-item_img-url,
+      .new-item_type,
+      .new-item_price {
+        flex-direction: column;
+      }
+      .new-item_img-url input {
+        width: 100%;
+        margin: 0;
+      }
+      .new-item_title input {
+        width: 100%;
+        margin: 0;
+      }
+      .new-item_price input {
+        margin: 0;
+        width: 100%;
+      }
+      .title-checkbox {
+        justify-content: space-between;
+        margin-bottom: 14px;
+        h1 {
+          color: #fcebd5;
+        }
+        .is-published {
+          align-self: flex-end;
+          label {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 21px;
+            color: #fcebd5;
+          }
+          input {
+            appearance: none;
+            vertical-align: middle;
+            cursor: pointer;
+            width: 18px;
+            height: 17px;
+            background: #fcebd5;
+            border-radius: 2px;
+            position: relative;
+            &:checked {
+              background-image: url(../Images/check-mark.svg);
+              background-size: 80%;
+              background-repeat: no-repeat;
+              background-position: center;
+            }
+          }
+        }
+      }
+      .new-item_title,
+      .new-item_desc {
+        margin-bottom: 27px;
+      }
+      .new-item_type-price {
+        margin-bottom: 19px;
+        .new-item_type,
+        .new-item_price {
+          width: 50%;
+        }
+        input,
+        select {
+          height: 27px;
+        }
+        gap: 28px;
+      }
+      label {
+        color: #edd5bb;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 21px;
+        width: fit-content;
+        cursor: pointer;
+      }
+      input:not([type="checkbox"]),
+      textarea,
+      select {
+        appearance: none;
+        outline: none;
+        border: 1px solid #edd5bb;
+        color: #edd5bb;
+        font-weight: 300;
+        padding-left: 2px;
+        border-radius: 2px;
+        background-color: transparent;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 1px solid #fcebd5;
+      }
+      p {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 21px;
+        color: #fcebd5;
+      }
+      .or-text {
+        margin: 7px 0;
+      }
+      .add-image {
+        border: 2px dashed #fcebd5;
+        height: 310px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .take-snapshot,
+        .upload-file {
+          margin: 0 auto;
+        }
+        .upload-file {
+          display: none;
+        }
+        img {
+          margin: 0 auto;
+        }
+        p {
+          margin-top: 15px;
+        }
+        label {
+          display: block;
+        }
+        #file-input {
+          display: none;
+        }
+        .displayed-img-wrapper {
+          display: none;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
+          height: 100%;
+          width: 100%;
+          .img-and-del-btn {
+            height: 100%;
+            width: fit-content;
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            #new-img-displayed {
+              max-height: 100%;
+              max-width: 100%;
+            }
+            .del-img-btn {
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              padding: 6px;
+              border: 3px solid #d44c2e;
+              border-radius: 50%;
+            }
+          }
+        }
+        .take-snapshot {
+          text-decoration: none;
+        }
+        @include min-S-laptop {
+          .take-snapshot {
+            display: none;
+          }
+          .upload-file {
+            display: block;
+          }
+        }
+      }
+      .add-cancel-btns {
+        display: flex;
+        margin-top: 19px;
+        gap: 28px;
+        .add-btn,
+        .cancel-btn {
+          width: 50%;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 21px;
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+        }
+        .add-btn {
+          background-color: #d44c2e;
+          color: #fcebd5;
+        }
+        .cancel-btn {
+          background-color: #e5e5e5;
+          color: #5a5a5a;
+        }
+      }
+    }
+  }
+  .alert-screen-overlay {
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #a16a5e;
+    opacity: 0;
+    z-index: 11;
+  }
+  .alert-screen-overlay.active {
+    height: 100%;
+    opacity: 0.8;
+  }
+  .alert-popup {
+    opacity: 0;
+    transition: opacity 20ms ease-in;
+    pointer-events: none;
+    z-index: 15;
+    background-color: #a16a5e;
+    width: fit-content;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    border-radius: 5px;
+    .alert-text {
+      color: #fcebd5;
+      margin-bottom: 14px;
+    }
+    .alert-read-btn {
+      background-color: #d44c2e;
+      color: #fcebd5;
+      margin-left: 7px;
+      transition: all 150ms ease-in-out;
+      &:hover {
+        background-color: #d44c2e;
+        transform: scale(1.1);
+      }
+    }
+  }
+  .alert-popup.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+/* ARTIST HOME PAGE */
+#artistHomePageMenu {
+  position: static !important;
+}
+
+.artistMenuCollapse {
+  position: fixed !important;
+  top: 8.9%;
+  right: -100%;
+  width: 100%;
+  transition: all 0.4s ease;
+  display: block;
+}
+
+.navbar-collapse.collapsing {
+  height: auto !important;
+}
+
+.line-height {
+  line-height: 60px;
+}
+
+.flex-basis-45 {
+  flex-basis: 45%;
+}
+
+@media screen and (max-width: 362px) {
+  .text-start .large-font-size {
+    font-size: 30px;
+  }
+
+  #paintingsSold {
+    font-size: 40px;
+  }
+
+  #totalIncome {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 395px) {
+  .artistName {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .font-size-to-shrink {
+    font-size: 22px !important;
+  }
+}
+
+.border-none {
+  border: none;
+}
+
+.padding-button {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media screen and (max-width: 323px) {
+  .padding-button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.stop-scrolling {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.activeButton {
+  background-color: rgb(213, 76, 46) !important;
+}
+
+.disabeled {
+  background-color: gray !important;
+}
+
+/* ARTIST ITEM PAGE */
+.dashed-border {
+  border: 2px dashed #a26a5e;
+}
+
+.box-shadow-button {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.align-items-c {
+  align-items: center !important;
+}
+
+@media screen and (max-width: 347px) {
+  .padding-x {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+}
+
+.modal-header {
+  border-bottom: none !important;
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+/* ARTIST NEW ITEM */
+#addNewItem {
+  position: static !important;
+}
+
+.snapshot-border {
+  border: 2px dashed #fcebd5;
+}
+
+.addNewItemProperties {
+  position: absolute !important;
+  z-index: 10000 !important;
+  min-height: 100vh !important;
+  height: auto !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+#closeAddNewItem {
+  right: 5%;
+  position: static !important;
+}
+
+#pictureCanvas {
+  height: 300px !important;
+  width: 100% !important;
+}
+
+#snapedPicture {
+  border-top: 2px dashed #fcebd5;
+}
+
+.position-static {
+  position: static !important;
+}
+
+#confirmNewItem {
+  text-decoration: none;
+}
+
+textarea {
+  color: #edd5bb;
+}
+
+.edit {
+  position: static !important;
+  padding-left: 0.4rem !important;
+  padding-right: 0.4rem !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* SNAPSHOT PAGE */
+video {
+  width: 100%;
+  object-fit: fill;
+  height: 600px !important;
+}
+
+/* AUCTION PAGE */
+.bottom {
+  position: fixed;
+  bottom: 0px;
+}
+
+#placeBidButton {
+  position: static !important;
+  font-size: 30px !important;
+  border-radius: 20px !important;
+  padding: 20px !important;
+}
+
+.input-bid-border {
+  border-radius: 15px;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+body.keyboard {
+  height: calc(100% + 600px); /* add padding for keyboard */
+}
+
+@media screen and (max-width: 353px) {
+  .font-size-70 {
+    font-size: 60px;
+  }
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon > i {
+  position: absolute;
+  display: block;
+  transform: translate(0, -50%);
+  top: 50%;
+  pointer-events: none;
+  width: 25px;
+  text-align: center;
+  font-style: normal;
+  font-size: 40px;
+  color: #a26a5e;
+}
+
+.input-icon > input {
+  padding-left: 25px;
+  padding-right: 0;
+}
+
+.input-icon-right > i {
+  right: 0;
+}
+
+.input-icon-right > input {
+  padding-left: 0;
+  padding-right: 25px;
+  text-align: right;
+}
+
+.min-height-100vh-minus-navbar {
+  min-height: calc(100vh - 60px);
+}
+
+.countDown {
+  position: absolute;
+  bottom: -10%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px 25px;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}

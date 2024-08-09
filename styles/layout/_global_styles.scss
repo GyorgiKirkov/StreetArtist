@@ -1,0 +1,16 @@
+// ALL Pages Global Styles
+// ***********
+@use "../abstracts/" as *;
+body {
+  background-color: $background-light;
+}
+section {
+  display: none;
+}
+h1 {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+}

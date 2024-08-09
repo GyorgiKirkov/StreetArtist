@@ -1,0 +1,116 @@
+@use "../abstracts/" as *;
+#artists {
+  height: 100%;
+  .artist-statistics {
+    height: 100%;
+    background-color: #EDD5BB;
+    display: flex;
+    flex-wrap: wrap;
+    .items-sold-val,
+    .total-income-val,
+    .auct-item-val {
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 56px;
+      color: #fcebd5;
+      @include custom-max-400 {
+        font-size: 40px;
+      }
+      @include max-M-phone {
+        font-size: 35px;
+      }
+    }
+    .total-items,
+    .total-income {
+      width: 50%;
+      padding-top: 26px;
+    }
+    .total-items {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .total-income {
+      padding-right: 18px;
+    }
+    .t-items-inner,
+    .t-income-inner {
+      background-color: #a16a5e;
+      text-align: center;
+      padding: 15px;
+      @include max-S-phone {
+        padding: 8px;
+      }
+    }
+    .item-auctioning {
+      width: 100%;
+      padding: 18px;
+      font-size: 28px;
+      .auct-inner {
+        background-color: #d44c2e;
+        text-align: center;
+        padding: 10px;
+      }
+    }
+    .auct-item-val {
+      font-size: 28px;
+    }
+    p {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 21px;
+      color: #fcebd5;
+      @include custom-max-400 {
+        font-size: 15px;
+      }
+    }
+  }
+  .income-days {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    .income-inner {
+      display: flex;
+      flex-direction: column;
+      p {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 21px;
+        color: #a16a5e;
+        margin-bottom: 9px;
+      }
+      .days-btns {
+        display: flex;
+        button:nth-child(2) {
+          margin: 0 39px;
+          @include custom-max-400 {
+            margin: 0 18px;
+          }
+          @include max-M-phone {
+            margin: 0 12px;
+          }
+        }
+        button {
+          width: 100px;
+          @include custom-max-400 {
+            width: 90px;
+          }
+          @include max-M-phone {
+            width: 80px;
+          }
+          background-color: #a16a5e;
+          color: #fcebd5;
+        }
+        button.active {
+          background-color: #d44c2e;
+        }
+      }
+    }
+  }
+  .chart-wrapper {
+    padding: 0 18px;
+    margin: 46px auto;
+    max-width: 1000px;
+    min-height: 350px;
+    height: 150%;
+  }
+}

@@ -1,0 +1,120 @@
+@use "../abstracts/" as *;
+
+#home {
+  .main-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include max-M-phone {
+      padding-bottom: 2.5rem;
+    }
+    .logo {
+      padding: 53px 0;
+      @include max-L-phone {
+        padding: 1rem 0;
+      }
+    }
+  }
+
+  .polygons-wrapper {
+    margin-bottom: 55px;
+    position: relative;
+    height: 404px;
+    width: 260px;
+
+    :hover {
+      filter: drop-shadow(-1px 4px 2px rgba(0, 0, 0, 0.3));
+    }
+    @include max-M-phone {
+      height: 362.5px;
+      width: 240px;
+    }
+  }
+
+  .join-artist-wrapper,
+  .join-visitor-wrapper {
+    position: absolute;
+    transition: 0.3s;
+  }
+  .join-artist-wrapper:hover,
+  .join-visitor-wrapper:hover {
+    animation: backtofront 1.2s linear forwards;
+    position: absolute;
+    box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.33);
+  }
+
+  .join-visitor-wrapper {
+    bottom: 0;
+  }
+
+  .join-artist:hover,
+  .join-visitor:hover {
+    transform: scale(1.03) translate(1px, -5px);
+  }
+
+  .join-artist,
+  .join-visitor {
+    position: absolute;
+    height: 291.388px;
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+    @include max-M-phone {
+      height: 256.5px;
+      width: 274px;
+    }
+    p {
+      font-family: "Reenie Beanie", cursive;
+      font-weight: 500;
+      font-size: 45px;
+      @include max-M-phone {
+        font-size: 40px;
+      }
+    }
+  }
+
+  .join-artist {
+    top: 0;
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 40%);
+    background-color: #edd5bb;
+    .artist-wrapper {
+      position: absolute;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    p {
+      color: #a16a5e;
+    }
+    .join-artist-select {
+      width: 102.223px;
+      height: 28.454px;
+      border-radius: 2px;
+      background: none;
+      border: 1px solid #a16a5e;
+      color: #a16a5e;
+      font-weight: 300;
+      font-size: 13px;
+      font-style: normal;
+      line-height: normal;
+      outline: none;
+      transition: all 0.03s ease;
+      cursor: pointer;
+    }
+  }
+
+  .join-visitor {
+    bottom: 0;
+    clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
+    background-color: #a16a5e;
+    p {
+      position: absolute;
+      bottom: 45px;
+      color: #fcebd5;
+    }
+  }
+}
